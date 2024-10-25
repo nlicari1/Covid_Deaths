@@ -95,3 +95,11 @@ Select deaths.continent, deaths.location, deaths.date, deaths.population, vaccs.
 		ON deaths.location = vaccs.location
 		AND deaths.date = vaccs.date
 	Where deaths.continent is not null
+
+
+Create View TotalDeathsCountries as
+Select Location, MAX(total_deaths) as TotalDeaths
+From CovidProject..CovidDeaths
+Where continent is not null
+Group By location
+--Order By TotalDeaths desc
